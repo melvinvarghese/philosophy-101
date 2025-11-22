@@ -10,7 +10,7 @@ We’ve written this in plain English. No Latin (unless we translate it). No gat
 
 The library is divided into **10 Volumes**.
 
-* **Vol 1: The Toolbox** - Start here. Logic, arguing, and how to think.
+* [**Vol 1: The Toolbox**](/Vol-01-The-Toolbox) - Start here. Logic, arguing, and how to think.
 * **Vol 2: Metaphysics** - The weird stuff. God, simulations, and reality.
 * **Vol 3: Epistemology** - Knowledge. Truth, science, and skepticism.
 * **Vol 4: The Mind** - Consciousness, AI, and the Self.
