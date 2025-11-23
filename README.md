@@ -26,6 +26,7 @@ Don't try to read this cover to cover. Treat it like a buffet.
 * Feeling confused about reality? Go to **Vol 2**.
 
 Enjoy the journey.
+<br>
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=melvinvarghese.philosophy-101)
 
 
