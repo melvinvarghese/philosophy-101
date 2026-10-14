@@ -40,9 +40,9 @@ Philosophy 101 is an approachable guide for curious beginners. It uses short exp
 
 ## 4. Information architecture and reader flow
 
-1. **Homepage (`/philosophy-101/`)** — concise purpose statement, a prominent “Start with the Toolbox” path, and an easy-to-scan set of ten volume cards. A small “choose by question” area may link to existing articles only; it must not imply that the guide has content it does not yet contain.
+1. **Homepage (`/philosophy-101/`)** — concise purpose statement, a prominent “Start with the Toolbox” path, an easy-to-scan set of ten volume cards, and three “choose by question” links to existing articles about freedom, knowledge, and meaning. Do not imply that the guide has content it does not yet contain.
 2. **Volume pages (`/philosophy-101/volumes/<slug>/`)** — volume title and short introduction, followed by the articles in their existing reading order. Show chapter numbering and title so readers can judge the sequence at a glance.
-3. **Article pages (`/philosophy-101/reading/<slug>/`)** — volume breadcrumb, article title, legible body, reflection prompt, and previous/next links. Include a return link to the volume contents.
+3. **Article pages (`/philosophy-101/reading/<volume-slug>/<article-slug>/`)** — volume breadcrumb, article title, legible body, reflection prompt, and previous/next links. Include a return link to the volume contents.
 4. **Navigation** — keep a compact top-level route back to the library and a footer link back to the repository. Every article must be reachable from the homepage through its volume, and every interior page must have a route back.
 
 The route structure should remain stable as articles are added. Each article's current Markdown file remains the content source of truth; the site must not keep a second manually edited copy of its prose.
