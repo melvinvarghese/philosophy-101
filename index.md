@@ -1,9 +1,9 @@
 ---
-layout: default
-title: Philosophy 101
-description: An approachable guide to philosophy, with short explanations and questions to help readers think for themselves.
+layout: home
+title: Philosophy 101 for Curious Beginners
+description: Explore philosophy through clear beginner guides to logic, reality, knowledge, ethics, the mind, and the meaning of life.
 permalink: /
 ---
 
-<h1 class="home-title">Philosophy 101</h1>
+<h1 id="home-title" class="home-title">Philosophy 101</h1>
 <p class="home-intro">Welcome to the rabbit hole.</p>

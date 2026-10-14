@@ -1,0 +1,55 @@
+---
+layout: default
+---
+<div class="home-page">
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="home-hero__copy">
+      {{ content }}
+      <p class="home-hero__lead">Philosophy starts with the questions we keep returning to: what is real, what can we know, and how should we live?</p>
+      <a class="start-link" href="{{ '/volumes/the-toolbox/' | relative_url }}">
+        <span>Start with the Toolbox</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <div class="home-hero__art" aria-hidden="true">
+      <span class="orbit orbit--outer"></span>
+      <span class="orbit orbit--inner"></span>
+      <span class="orbit-dot"></span>
+      <span class="orbit-core">?</span>
+    </div>
+  </section>
+
+  <section class="question-paths" aria-labelledby="question-heading">
+    <div class="section-heading">
+      <p class="section-index">Begin anywhere</p>
+      <h2 id="question-heading">Start with a question</h2>
+    </div>
+    <ul class="question-list">
+      {% for item in site.data.starting_questions %}
+      <li>
+        <a class="question-link" href="{{ item.destination | relative_url }}">{{ item.question | escape }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="volume-library" aria-labelledby="library-heading">
+    <div class="section-heading section-heading--library">
+      <div>
+        <p class="section-index">The library</p>
+        <h2 id="library-heading">Ten paths through philosophy</h2>
+      </div>
+      <p class="section-note">Read in order, or follow the subject that has your attention.</p>
+    </div>
+    <div class="volume-grid">
+      {% for volume in site.data.volumes %}
+      <a class="volume-card" href="{{ '/volumes/' | append: volume.slug | append: '/' | relative_url }}" aria-label="Volume {{ forloop.index }}: {{ volume.title | escape }}. {{ volume.description | escape }}">
+        <span class="volume-card__number">Volume {{ forloop.index | prepend: '0' }}</span>
+        <span class="volume-card__title">{{ volume.title | escape }}</span>
+        <span class="volume-card__description">{{ volume.description | escape }}</span>
+        <span class="volume-card__mark" aria-hidden="true">↗</span>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+</div>

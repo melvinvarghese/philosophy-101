@@ -1,0 +1,50 @@
+- id: vol-01-the-toolbox
+  title: The Toolbox
+  slug: the-toolbox
+  description: "Start here. Logic, arguing, and how to think."
+  source_dir: Vol-01-The-Toolbox
+- id: vol-02-metaphysics
+  title: Metaphysics
+  slug: metaphysics
+  description: "The weird stuff. God, simulations, and reality."
+  source_dir: Vol-02-Metaphysics
+- id: vol-03-epistemology
+  title: Epistemology
+  slug: epistemology
+  description: "Knowledge. Truth, science, and skepticism."
+  source_dir: Vol-03-Epistemology
+- id: vol-04-the-mind
+  title: The Mind
+  slug: the-mind
+  description: "Consciousness, AI, and the Self."
+  source_dir: Vol-04-The-Mind
+- id: vol-05-ethics
+  title: Ethics
+  slug: ethics
+  description: "Right, wrong, and the gray areas."
+  source_dir: Vol-05-Ethics
+- id: vol-06-politics
+  title: Politics
+  slug: politics
+  description: "Power, justice, and freedom."
+  source_dir: Vol-06-Politics
+- id: vol-07-aesthetics
+  title: Aesthetics
+  slug: aesthetics
+  description: "Art, beauty, and horror."
+  source_dir: Vol-07-Aesthetics
+- id: vol-08-the-ancients
+  title: The Ancients
+  slug: the-ancients
+  description: "Where it all began (Greeks, Romans, etc.)."
+  source_dir: Vol-08-The-Ancients
+- id: vol-09-the-moderns
+  title: The Moderns
+  slug: the-moderns
+  description: "The thinkers who built the modern world."
+  source_dir: Vol-09-The-Moderns
+- id: vol-10-meaning-of-life
+  title: The Search for Meaning
+  slug: meaning-of-life
+  description: "Existentialism, Nihilism, and Eastern Wisdom."
+  source_dir: Vol-10-Meaning-of-Life
