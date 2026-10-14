@@ -97,7 +97,7 @@
 
 - [ ] **Step 1: Write the failing homepage and volume tests**
 
-  Add `test_homepage_links_all_ten_volumes`, `test_homepage_links_to_existing_questions`, `test_volume_pages_exist_at_stable_urls`, and `test_each_volume_lists_articles_in_repository_order`.
+  Add `test_homepage_links_all_ten_volumes`, `test_homepage_links_to_existing_questions`, and `test_volume_pages_exist_at_stable_urls`. Defer article-list contents and order assertions until Task 3 adds article front matter.
 
   ```python
   class TestVolumeNavigation(unittest.TestCase):
@@ -121,10 +121,6 @@
           missing = [slug for slug in VOLUME_SLUGS if not site_file_exists(f"volumes/{slug}/index.html")]
           self.assertEqual(missing, [])
 
-      def test_each_volume_lists_articles_in_repository_order(self):
-          for (slug, source_dir) in zip(VOLUME_SLUGS, VOLUME_SOURCE_DIRS):
-              html = read_site_file(f"volumes/{slug}/index.html")
-              self.assertEqual(volume_article_titles(html), source_article_titles(source_dir))
   ```
 
 - [ ] **Step 2: Run the focused tests and confirm the expected failure**
@@ -143,7 +139,7 @@
 - [ ] **Step 5: Rebuild and verify all volume tests**
 
   Run `bundle exec jekyll build && python3 -m unittest tests.test_generated_site.TestVolumeNavigation -v`.
-  Expected: PASS for ten volume routes, ten unique cards, and ordered contents.
+  Expected: PASS for ten volume routes, ten unique cards, and the three existing question links. Volume templates already use the Task 3 article metadata interface; their lists will populate when that metadata is added.
 
 - [ ] **Step 6: Commit the library-navigation task**
 
@@ -157,7 +153,7 @@
 
 - [ ] **Step 1: Write the failing article tests**
 
-  Add `test_all_32_articles_render_from_existing_sources`, `test_article_metadata_is_complete_and_unique`, `test_article_titles_match_existing_headings`, `test_article_has_one_h1`, `test_article_layout_shows_breadcrumb_and_reflection`, `test_article_without_reflection_renders_normally`, and `test_previous_next_stay_within_volume`.
+  Add `test_all_32_articles_render_from_existing_sources`, `test_article_metadata_is_complete_and_unique`, `test_article_titles_match_existing_headings`, `test_article_has_one_h1`, `test_article_layout_shows_breadcrumb_and_reflection`, `test_article_without_reflection_renders_normally`, `test_previous_next_stay_within_volume`, and `test_each_volume_lists_articles_in_repository_order`.
 
   ```python
   class TestArticlePages(unittest.TestCase):
@@ -216,6 +212,11 @@
                   expected_next = None if index == len(pages) - 1 else site_url(pages[index + 1].permalink)
                   self.assertEqual(previous, expected_previous)
                   self.assertEqual(next_page, expected_next)
+
+      def test_each_volume_lists_articles_in_repository_order(self):
+          for (slug, source_dir) in zip(VOLUME_SLUGS, VOLUME_SOURCE_DIRS):
+              html = read_site_file(f"volumes/{slug}/index.html")
+              self.assertEqual(volume_article_titles(html), source_article_titles(source_dir))
   ```
 
 - [ ] **Step 2: Run focused tests and confirm the expected failure**
