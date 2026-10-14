@@ -29,13 +29,3 @@ Don't try to read this cover to cover. Treat it like a buffet.
 
 Enjoy the journey.
 
-## Preview locally
-
-Install Ruby and Bundler, then run:
-
-```sh
-bundle install
-bundle exec jekyll serve --baseurl /philosophy-101
-```
-
-Open `http://127.0.0.1:4000/philosophy-101/`. To build the static site without starting the preview server, run `bundle exec jekyll build`.
