@@ -1,0 +1,16 @@
+title: Philosophy 101
+description: A welcoming guide to philosophy for curious beginners, with concise explanations and questions for reflection.
+url: https://melvinvarghese.github.io
+baseurl: /philosophy-101
+repository_url: https://github.com/melvinvarghese/philosophy-101
+markdown: kramdown
+permalink: pretty
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .bundle
+  - docs
+  - tests
+  - .superpowers
+  - README.md
