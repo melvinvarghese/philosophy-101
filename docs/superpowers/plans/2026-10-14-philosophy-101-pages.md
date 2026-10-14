@@ -50,7 +50,7 @@
 - `tests/__init__.py` — make the test directory importable by the standard library test runner.
 - `tests/test_generated_site.py` — standard-library tests against generated HTML and the existing Markdown source set.
 - `Gemfile` and `Gemfile.lock` — pin the currently supported `github-pages` gem version 232 for local build verification.
-- `.gitignore` — exclude `_site/`, `.bundle/`, `vendor/bundle/`, `__pycache__/`, and `*.py[cod]` from commits.
+- `.gitignore` — exclude `_site/`, `.bundle/`, `vendor/bundle/`, `__pycache__/`, `*.py[cod]`, and `.superpowers/` from commits.
 - `README.md` — contributor instructions and the verified Pages URL while retaining the existing volume guide.
 
 ## Task 1: Jekyll Shell and Build Check
