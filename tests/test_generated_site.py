@@ -509,6 +509,7 @@ class TestSiteQuality(unittest.TestCase):
         css = read_site_file("assets/css/site.css")
         self.assertIn('class="skip-link"', html)
         self.assertIn("<main", html)
+        self.assertRegex(html, r'<main\b(?=[^>]*\bid="main-content")(?=[^>]*\btabindex="-1")[^>]*>')
         self.assertIn(":focus-visible", css)
         self.assertIn("prefers-reduced-motion", css)
         paper = css_color("paper")

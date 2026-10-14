@@ -1,8 +1,8 @@
 # Philosophy 101 — GitHub Pages Reading Library
 
 **Status:** Approved for implementation
-**Date:** 2026-10-14  
-**Repository:** [melvinvarghese/philosophy-101](https://github.com/melvinvarghese/philosophy-101)  
+**Date:** 2026-10-14<br>
+**Repository:** [melvinvarghese/philosophy-101](https://github.com/melvinvarghese/philosophy-101)<br>
 **Publishing target:** GitHub Pages, `main` branch, repository root, built with GitHub Pages' supported Jekyll flow
 
 ## 1. Product purpose
