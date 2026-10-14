@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Virtue Ethics: Be a Good Person"
+description: "Virtue Ethics: Be a Good Person — Aristotle didn't care about ethical formulas. He cared about character."
+volume_id: "vol-05-ethics"
+order: 2
+permalink: "/reading/ethics/virtue-ethics/"
+---
+
 # Virtue Ethics: Be a Good Person
 
 Aristotle didn't care about ethical formulas. He cared about character.

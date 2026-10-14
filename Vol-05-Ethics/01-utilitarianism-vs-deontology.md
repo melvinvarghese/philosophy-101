@@ -1,3 +1,12 @@
+---
+layout: article
+title: "The Heavyweights: Outcome vs. Duty"
+description: "The Heavyweights: Outcome vs. Duty — Utilitarianism (Mill, Bentham): The logic of the Greater Good."
+volume_id: "vol-05-ethics"
+order: 1
+permalink: "/reading/ethics/utilitarianism-vs-deontology/"
+---
+
 # The Heavyweights: Outcome vs. Duty
 
 **Utilitarianism (Mill, Bentham):**

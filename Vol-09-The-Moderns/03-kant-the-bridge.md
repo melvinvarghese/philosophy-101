@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Immanuel Kant: The System Builder"
+description: "Immanuel Kant: The System Builder — Kant looked at the Rationalists and Empiricists and said, \"You're both half-right.\""
+volume_id: "vol-09-the-moderns"
+order: 3
+permalink: "/reading/the-moderns/kant-the-bridge/"
+---
+
 # Immanuel Kant: The System Builder
 
 Kant looked at the Rationalists and Empiricists and said, "You're both half-right."

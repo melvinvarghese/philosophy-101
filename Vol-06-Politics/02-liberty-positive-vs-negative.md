@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Two Concepts of Liberty"
+description: "Two Concepts of Liberty — Isaiah Berlin split freedom into two types:"
+volume_id: "vol-06-politics"
+order: 2
+permalink: "/reading/politics/liberty-positive-vs-negative/"
+---
+
 # Two Concepts of Liberty
 
 Isaiah Berlin split freedom into two types:

@@ -1,3 +1,12 @@
+---
+layout: article
+title: "The Empiricists: Experience is King"
+description: "The Empiricists: Experience is King — John Locke: Father of Liberalism. Said we have \"Natural Rights\" (Life, Liberty, Property). His ideas are the…"
+volume_id: "vol-09-the-moderns"
+order: 2
+permalink: "/reading/the-moderns/locke-berkeley-hume/"
+---
+
 # The Empiricists: Experience is King
 
 **John Locke:**

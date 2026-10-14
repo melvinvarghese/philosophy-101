@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Steel-Manning: The Ultimate Power Move"
+description: "Steel-Manning: The Ultimate Power Move — Most people \"Straw Man\" their opponents (make them look dumb). Strong thinkers \"Steel Man\" them."
+volume_id: "vol-01-the-toolbox"
+order: 4
+permalink: "/reading/the-toolbox/steel-manning/"
+---
+
 # Steel-Manning: The Ultimate Power Move
 
 Most people "Straw Man" their opponents (make them look dumb). Strong thinkers "Steel Man" them.

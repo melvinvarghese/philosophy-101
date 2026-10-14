@@ -1,3 +1,12 @@
+---
+layout: article
+title: "The Simulation Theory: Are We in a Video Game?"
+description: "The Simulation Theory: Are We in a Video Game? — It sounds like science fiction, but it’s serious philosophy (modern metaphysics)."
+volume_id: "vol-02-metaphysics"
+order: 3
+permalink: "/reading/metaphysics/simulation-theory/"
+---
+
 # The Simulation Theory: Are We in a Video Game?
 
 It sounds like science fiction, but it’s serious philosophy (modern metaphysics).

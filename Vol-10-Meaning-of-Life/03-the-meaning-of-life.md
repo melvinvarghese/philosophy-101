@@ -1,3 +1,12 @@
+---
+layout: article
+title: "The Meaning of Life (Summary)"
+description: "The Meaning of Life (Summary) — So, what is the meaning of life? We've looked at 100 ideas. Here are the options:"
+volume_id: "vol-10-meaning-of-life"
+order: 3
+permalink: "/reading/meaning-of-life/the-meaning-of-life/"
+---
+
 # The Meaning of Life (Summary)
 
 So, what is the meaning of life? We've looked at 100 ideas. Here are the options:

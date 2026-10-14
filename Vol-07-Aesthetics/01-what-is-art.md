@@ -1,3 +1,12 @@
+---
+layout: article
+title: "What is Art? (The Toilet Problem)"
+description: "What is Art? (The Toilet Problem) — In 1917, Marcel Duchamp took a porcelain urinal, signed it \"R. Mutt,\" and put it in an art gallery. He called it…"
+volume_id: "vol-07-aesthetics"
+order: 1
+permalink: "/reading/aesthetics/what-is-art/"
+---
+
 # What is Art? (The Toilet Problem)
 
 In 1917, Marcel Duchamp took a porcelain urinal, signed it "R. Mutt," and put it in an art gallery. He called it *Fountain*.

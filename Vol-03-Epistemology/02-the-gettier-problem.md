@@ -1,3 +1,12 @@
+---
+layout: article
+title: "The Gettier Problem: Is \"Justified True Belief\" Enough?"
+description: "The Gettier Problem: Is \"Justified True Belief\" Enough? — For a long time, philosophers defined Knowledge as JTB: 1. You believe it. 2. It is actually…"
+volume_id: "vol-03-epistemology"
+order: 2
+permalink: "/reading/epistemology/the-gettier-problem/"
+---
+
 # The Gettier Problem: Is "Justified True Belief" Enough?
 
 For a long time, philosophers defined Knowledge as **JTB**:

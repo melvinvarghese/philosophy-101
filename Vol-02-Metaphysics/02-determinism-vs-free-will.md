@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Free Will: Do You Have a Choice?"
+description: "Free Will: Do You Have a Choice? — Determinism: Cause and Effect rules everything. 1. The Big Bang happened. 2. It set atoms in motion. 3. Those atoms…"
+volume_id: "vol-02-metaphysics"
+order: 2
+permalink: "/reading/metaphysics/determinism-vs-free-will/"
+---
+
 # Free Will: Do You Have a Choice?
 
 **Determinism:**

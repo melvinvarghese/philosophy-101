@@ -1,3 +1,12 @@
+---
+layout: article
+title: "The Problem of God"
+description: "The Problem of God — Philosophy doesn't tell you what to believe, but it analyzes the arguments."
+volume_id: "vol-02-metaphysics"
+order: 4
+permalink: "/reading/metaphysics/the-problem-of-god/"
+---
+
 # The Problem of God
 
 Philosophy doesn't tell you what to believe, but it analyzes the arguments.

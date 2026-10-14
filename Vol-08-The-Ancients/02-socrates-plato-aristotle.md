@@ -1,3 +1,12 @@
+---
+layout: article
+title: "The Big Three: Socrates, Plato, Aristotle"
+description: "The Big Three: Socrates, Plato, Aristotle — The holy trinity of Greek thought."
+volume_id: "vol-08-the-ancients"
+order: 2
+permalink: "/reading/the-ancients/socrates-plato-aristotle/"
+---
+
 # The Big Three: Socrates, Plato, Aristotle
 
 The holy trinity of Greek thought.

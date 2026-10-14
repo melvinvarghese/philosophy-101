@@ -1,0 +1,44 @@
+---
+layout: default
+---
+{% assign volume = site.data.volumes | where: "id", page.volume_id | first %}
+{% assign volume_url = '/volumes/' | append: volume.slug | append: '/' %}
+{% assign volume_articles = site.pages | where: "layout", "article" | where: "volume_id", page.volume_id | sort: "order" %}
+{% assign current_index = nil %}
+{% for candidate in volume_articles %}
+  {% if candidate.order == page.order %}
+    {% assign current_index = forloop.index0 %}
+  {% endif %}
+{% endfor %}
+{% assign previous_index = current_index | minus: 1 %}
+{% assign next_index = current_index | plus: 1 %}
+{% assign previous_article = volume_articles[previous_index] %}
+{% assign next_article = volume_articles[next_index] %}
+<div class="article-page">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="{{ '/' | relative_url }}">The library</a>
+    <span aria-hidden="true">/</span>
+    <a href="{{ volume_url | relative_url }}">{{ volume.title | escape }}</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">{{ page.title | escape }}</span>
+  </nav>
+  <article class="reading-article" data-volume-id="{{ page.volume_id | escape }}" data-order="{{ page.order }}">
+    {{ content }}
+  </article>
+  <nav class="article-navigation" aria-label="Chapter navigation">
+    {% if current_index > 0 and previous_article %}
+    <a class="previous-article" href="{{ previous_article.url | relative_url }}">
+      <span class="article-navigation__label">Previous chapter</span>
+      <span class="article-navigation__title">{{ previous_article.title | escape }}</span>
+    </a>
+    {% else %}
+    <span class="article-navigation__spacer" aria-hidden="true"></span>
+    {% endif %}
+    {% if next_article %}
+    <a class="next-article" href="{{ next_article.url | relative_url }}">
+      <span class="article-navigation__label">Next chapter</span>
+      <span class="article-navigation__title">{{ next_article.title | escape }}</span>
+    </a>
+    {% endif %}
+  </nav>
+</div>

@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Logical Fallacies"
+description: "Logical Fallacies — A fallacy is a bug in your brain's software. Here are the big ones:"
+volume_id: "vol-01-the-toolbox"
+order: 2
+permalink: "/reading/the-toolbox/logical-fallacies/"
+---
+
 # Logical Fallacies
 
 A fallacy is a bug in your brain's software. Here are the big ones:

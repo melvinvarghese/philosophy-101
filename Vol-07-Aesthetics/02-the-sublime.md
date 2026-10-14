@@ -1,3 +1,12 @@
+---
+layout: article
+title: "The Sublime: Beauty that Terrifies"
+description: "The Sublime: Beauty that Terrifies — Edmund Burke distinguished between the Beautiful and the Sublime."
+volume_id: "vol-07-aesthetics"
+order: 2
+permalink: "/reading/aesthetics/the-sublime/"
+---
+
 # The Sublime: Beauty that Terrifies
 
 Edmund Burke distinguished between the **Beautiful** and the **Sublime**.

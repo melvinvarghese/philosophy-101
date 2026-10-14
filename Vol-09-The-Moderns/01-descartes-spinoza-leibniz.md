@@ -1,3 +1,12 @@
+---
+layout: article
+title: "The Rationalists: Math and God"
+description: "The Rationalists: Math and God — Descartes: \"I think, therefore I am.\" Dualist. Tried to prove God exists using logic."
+volume_id: "vol-09-the-moderns"
+order: 1
+permalink: "/reading/the-moderns/descartes-spinoza-leibniz/"
+---
+
 # The Rationalists: Math and God
 
 **Descartes:**

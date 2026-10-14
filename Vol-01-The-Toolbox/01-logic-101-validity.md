@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Logic 101: Validity vs. Truth"
+description: "Logic 101: Validity vs. Truth — Logic is the art of not being fooled. The first thing you need to know is the difference between a \"Valid\" argument and…"
+volume_id: "vol-01-the-toolbox"
+order: 1
+permalink: "/reading/the-toolbox/logic-101-validity/"
+---
+
 # Logic 101: Validity vs. Truth
 
 Logic is the art of not being fooled. The first thing you need to know is the difference between a "Valid" argument and a "True" argument.

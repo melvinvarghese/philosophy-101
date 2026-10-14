@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Consciousness and Qualia"
+description: "Consciousness and Qualia — Qualia (pronounced kwah-lee-ah) is the raw feeling of experience. It is the redness of a rose. The pain of a headache. The…"
+volume_id: "vol-04-the-mind"
+order: 1
+permalink: "/reading/the-mind/consciousness-and-qualia/"
+---
+
 # Consciousness and Qualia
 
 **Qualia** (pronounced kwah-lee-ah) is the raw feeling of experience.

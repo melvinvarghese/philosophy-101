@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Mental Razors: Occam and Hanlon"
+description: "Mental Razors: Occam and Hanlon — A \"Razor\" is a mental tool that cuts away unnecessary noise."
+volume_id: "vol-01-the-toolbox"
+order: 3
+permalink: "/reading/the-toolbox/razors-occam-hanlon/"
+---
+
 # Mental Razors: Occam and Hanlon
 
 A "Razor" is a mental tool that cuts away unnecessary noise.

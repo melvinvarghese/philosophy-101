@@ -1,3 +1,12 @@
+---
+layout: article
+title: "The Chinese Room: Can AI Understand?"
+description: "The Chinese Room: Can AI Understand? — Imagine a man locked in a room. He doesn't speak Chinese. He has a rule book: \"If you see symbol X, write symbol…"
+volume_id: "vol-04-the-mind"
+order: 2
+permalink: "/reading/the-mind/the-chinese-room/"
+---
+
 # The Chinese Room: Can AI Understand?
 
 Imagine a man locked in a room. He doesn't speak Chinese.

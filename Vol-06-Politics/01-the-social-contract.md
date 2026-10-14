@@ -1,3 +1,12 @@
+---
+layout: article
+title: "The Social Contract: Why We Have Laws"
+description: "The Social Contract: Why We Have Laws — Hobbes, Locke, and Rousseau asked: Why do we let governments boss us around?"
+volume_id: "vol-06-politics"
+order: 1
+permalink: "/reading/politics/the-social-contract/"
+---
+
 # The Social Contract: Why We Have Laws
 
 Hobbes, Locke, and Rousseau asked: Why do we let governments boss us around?

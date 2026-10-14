@@ -1,5 +1,6 @@
 from pathlib import Path
 from html.parser import HTMLParser
+from dataclasses import dataclass
 import re
 from urllib.parse import urlsplit
 import unittest
@@ -110,8 +111,124 @@ def source_article_titles(source_dir: str) -> list[str]:
     return titles
 
 
+class ArticleTitleCollector(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.titles = []
+        self.current = None
+
+    def handle_starttag(self, tag, attrs):
+        if tag != "span":
+            return
+        attributes = dict(attrs)
+        if "article-link__title" in attributes.get("class", "").split():
+            self.current = []
+
+    def handle_data(self, data):
+        if self.current is not None:
+            self.current.append(data)
+
+    def handle_endtag(self, tag):
+        if tag == "span" and self.current is not None:
+            self.titles.append("".join(self.current).strip())
+            self.current = None
+
+
 def volume_article_titles(html: str) -> list[str]:
-    return [link["text"].strip() for link in classed_links(html, "article-link")]
+    parser = ArticleTitleCollector()
+    parser.feed(html)
+    return parser.titles
+
+
+def normalize_smart_quotes(text: str) -> str:
+    return text.translate(str.maketrans({"“": '"', "”": '"', "‘": "'", "’": "'"}))
+
+
+def article_source_files() -> list[Path]:
+    return sorted(Path().glob("Vol-*/[0-9][0-9]-*.md"))
+
+
+def article_heading(path: Path) -> str:
+    match = re.search(r"^# (.+)$", path.read_text(encoding="utf-8"), re.MULTILINE)
+    return match.group(1) if match else ""
+
+
+@dataclass(frozen=True)
+class ArticleRecord:
+    title: str
+    description: str
+    volume_id: str
+    order: int
+    permalink: str
+
+
+class ArticleMetadataReader(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.title_parts = []
+        self.title = ""
+        self.description = ""
+        self.volume_id = ""
+        self.order = 0
+        self.in_title = False
+
+    def handle_starttag(self, tag, attrs):
+        attributes = dict(attrs)
+        if tag == "meta" and attributes.get("name") == "description":
+            self.description = attributes.get("content", "")
+        elif tag == "article" and "reading-article" in attributes.get("class", "").split():
+            self.volume_id = attributes.get("data-volume-id", "")
+            try:
+                self.order = int(attributes.get("data-order", "0"))
+            except ValueError:
+                self.order = 0
+        elif tag == "h1":
+            self.in_title = True
+
+    def handle_data(self, data):
+        if self.in_title:
+            self.title_parts.append(data)
+
+    def handle_endtag(self, tag):
+        if tag == "h1" and self.in_title:
+            self.title = "".join(self.title_parts).strip()
+            self.in_title = False
+
+
+def generated_article_pages() -> list[ArticleRecord]:
+    records = []
+    for html_path in sorted(SITE_ROOT.glob("reading/**/index.html")):
+        parser = ArticleMetadataReader()
+        parser.feed(html_path.read_text(encoding="utf-8"))
+        relative = html_path.relative_to(SITE_ROOT).as_posix()
+        permalink = "/" + relative.removeprefix("reading/").removesuffix("/index.html")
+        permalink = "/reading/" + permalink.removeprefix("/") + "/"
+        records.append(ArticleRecord(
+            title=parser.title,
+            description=parser.description,
+            volume_id=parser.volume_id,
+            order=parser.order,
+            permalink=permalink,
+        ))
+    return records
+
+
+def article_pages_for_volume(volume_id: str) -> list[ArticleRecord]:
+    return sorted((page for page in generated_article_pages() if page.volume_id == volume_id), key=lambda page: page.order)
+
+
+def read_site_page(url_path: str) -> str:
+    output = site_output_path(url_path)
+    return output.read_text(encoding="utf-8") if output and output.is_file() else ""
+
+
+def site_url(permalink: str) -> str:
+    return f"{SITE_BASEURL}{permalink}"
+
+
+def article_link_href(html: str, class_name: str) -> str | None:
+    links = classed_links(html, class_name)
+    return links[0]["href"] if links else None
 
 
 class TestSiteShell(unittest.TestCase):
@@ -154,6 +271,69 @@ class TestVolumeNavigation(unittest.TestCase):
     def test_volume_pages_exist_at_stable_urls(self):
         missing = [slug for slug in VOLUME_SLUGS if not site_file_exists(f"volumes/{slug}/index.html")]
         self.assertEqual(missing, [])
+
+
+class TestArticlePages(unittest.TestCase):
+    def test_all_32_articles_render_from_existing_sources(self):
+        sources = article_source_files()
+        generated = generated_article_pages()
+        self.assertEqual(len(sources), 32)
+        self.assertEqual(len(generated), 32)
+        for page in generated:
+            self.assertTrue(site_file_exists(page.permalink))
+            self.assertIn(page.title, read_site_page(page.permalink))
+
+    def test_article_metadata_is_complete_and_unique(self):
+        records = generated_article_pages()
+        self.assertEqual(len(records), 32)
+        self.assertTrue(all(record.title and record.permalink and record.volume_id in VOLUME_IDS and record.order > 0 for record in records))
+        self.assertEqual(len({record.permalink for record in records}), 32)
+        self.assertEqual(len({(record.volume_id, record.order) for record in records}), 32)
+        self.assertTrue(all(record.description for record in records))
+        self.assertEqual(len({record.description for record in records}), 32)
+        for record in records:
+            html = read_site_page(record.permalink)
+            self.assertIn('class="reading-article"', html)
+            self.assertIn(f'data-volume-id="{record.volume_id}"', html)
+            self.assertIn(f'data-order="{record.order}"', html)
+
+    def test_article_titles_match_existing_headings(self):
+        source_titles = {normalize_smart_quotes(article_heading(path)) for path in article_source_files()}
+        generated_titles = {normalize_smart_quotes(record.title) for record in generated_article_pages()}
+        self.assertEqual(generated_titles, source_titles)
+
+    def test_article_has_one_h1(self):
+        for page in generated_article_pages():
+            html = read_site_page(page.permalink)
+            self.assertEqual(count_html_tags(html, "h1"), 1)
+
+    def test_article_layout_shows_breadcrumb_and_reflection(self):
+        html = read_site_page("/reading/the-toolbox/logic-101-validity/")
+        self.assertIn('class="breadcrumb"', html)
+        self.assertIn('id="reflection"', html)
+        self.assertIn('Is their logic broken, or are their facts wrong?', html)
+
+    def test_article_without_reflection_renders_normally(self):
+        html = read_site_page("/reading/the-toolbox/logical-fallacies/")
+        self.assertIn("Ad Hominem", html)
+        self.assertNotIn('id="reflection"', html)
+
+    def test_previous_next_stay_within_volume(self):
+        for volume_id in VOLUME_IDS:
+            pages = article_pages_for_volume(volume_id)
+            for index, page in enumerate(pages):
+                html = read_site_page(page.permalink)
+                previous = article_link_href(html, "previous-article")
+                next_page = article_link_href(html, "next-article")
+                expected_previous = None if index == 0 else site_url(pages[index - 1].permalink)
+                expected_next = None if index == len(pages) - 1 else site_url(pages[index + 1].permalink)
+                self.assertEqual(previous, expected_previous)
+                self.assertEqual(next_page, expected_next)
+
+    def test_each_volume_lists_articles_in_repository_order(self):
+        for slug, source_dir in zip(VOLUME_SLUGS, VOLUME_SOURCE_DIRS):
+            html = read_site_file(f"volumes/{slug}/index.html")
+            self.assertEqual(volume_article_titles(html), source_article_titles(source_dir))
 
 
 if __name__ == "__main__":

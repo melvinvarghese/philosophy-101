@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Panpsychism: Is Everything Conscious?"
+description: "Panpsychism: Is Everything Conscious? — This is a wild one, but it's making a comeback. Materialism struggles to explain how \"dead\" atoms create…"
+volume_id: "vol-04-the-mind"
+order: 3
+permalink: "/reading/the-mind/panpsychism/"
+---
+
 # Panpsychism: Is Everything Conscious?
 
 This is a wild one, but it's making a comeback.

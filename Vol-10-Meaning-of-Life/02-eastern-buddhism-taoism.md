@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Eastern Wisdom: Letting Go"
+description: "Eastern Wisdom: Letting Go — Buddhism: Life is Dukkha (Dissatisfaction). The cause is Tanha (Craving/Clinging). The Self is an illusion (Anatta). Stop…"
+volume_id: "vol-10-meaning-of-life"
+order: 2
+permalink: "/reading/meaning-of-life/eastern-buddhism-taoism/"
+---
+
 # Eastern Wisdom: Letting Go
 
 **Buddhism:**

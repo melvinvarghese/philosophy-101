@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Marxism 101: Class Struggle"
+description: "Marxism 101: Class Struggle — Forget the Cold War for a second. As a philosophy, Marxism is a way of analyzing history through money."
+volume_id: "vol-06-politics"
+order: 3
+permalink: "/reading/politics/marxism-basics/"
+---
+
 # Marxism 101: Class Struggle
 
 Forget the Cold War for a second. As a philosophy, Marxism is a way of analyzing history through money.

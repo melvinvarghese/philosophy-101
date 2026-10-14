@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Friedrich Nietzsche: Dynamite"
+description: "Friedrich Nietzsche: Dynamite — Nietzsche is often misunderstood as a Nazi (he wasn't; his sister was). He was a diagnostic philosopher."
+volume_id: "vol-09-the-moderns"
+order: 4
+permalink: "/reading/the-moderns/nietzsche/"
+---
+
 # Friedrich Nietzsche: Dynamite
 
 Nietzsche is often misunderstood as a Nazi (he wasn't; his sister was). He was a diagnostic philosopher.

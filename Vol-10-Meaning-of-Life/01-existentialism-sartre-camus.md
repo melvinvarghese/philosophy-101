@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Existentialism: Sartre and Camus"
+description: "Existentialism: Sartre and Camus — Sartre: \"Existence precedes Essence.\" You have no blueprint. You are terrifyingly free. If you ask \"What should I…"
+volume_id: "vol-10-meaning-of-life"
+order: 1
+permalink: "/reading/meaning-of-life/existentialism-sartre-camus/"
+---
+
 # Existentialism: Sartre and Camus
 
 **Sartre:** "Existence precedes Essence."

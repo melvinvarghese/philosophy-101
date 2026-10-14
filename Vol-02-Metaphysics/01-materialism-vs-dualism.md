@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Materialism vs. Dualism: What Are We Made Of?"
+description: "Materialism vs. Dualism: What Are We Made Of? — This is the oldest fight in the book."
+volume_id: "vol-02-metaphysics"
+order: 1
+permalink: "/reading/metaphysics/materialism-vs-dualism/"
+---
+
 # Materialism vs. Dualism: What Are We Made Of?
 
 This is the oldest fight in the book.

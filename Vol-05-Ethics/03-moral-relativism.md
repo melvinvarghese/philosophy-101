@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Moral Relativism: Is Morality Just Opinion?"
+description: "Moral Relativism: Is Morality Just Opinion? — Moral Relativism: \"What is right for you might not be right for me.\" It argues that morality is just…"
+volume_id: "vol-05-ethics"
+order: 3
+permalink: "/reading/ethics/moral-relativism/"
+---
+
 # Moral Relativism: Is Morality Just Opinion?
 
 **Moral Relativism:** "What is right for you might not be right for me."

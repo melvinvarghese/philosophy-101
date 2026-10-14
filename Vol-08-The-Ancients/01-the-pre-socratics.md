@@ -1,3 +1,12 @@
+---
+layout: article
+title: "The Pre-Socratics: The First Scientists"
+description: "The Pre-Socratics: The First Scientists — Before Socrates, there were guys trying to figure out nature without saying \"Zeus did it.\""
+volume_id: "vol-08-the-ancients"
+order: 1
+permalink: "/reading/the-ancients/the-pre-socratics/"
+---
+
 # The Pre-Socratics: The First Scientists
 
 Before Socrates, there were guys trying to figure out nature without saying "Zeus did it."

@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Epicureanism: It's Not Just About Food"
+description: "Epicureanism: It's Not Just About Food — Today, an \"Epicure\" is someone who likes fancy wine. But Epicurus was different. He was a Hedonist, but a…"
+volume_id: "vol-08-the-ancients"
+order: 3
+permalink: "/reading/the-ancients/epicureanism/"
+---
+
 # Epicureanism: It's Not Just About Food
 
 Today, an "Epicure" is someone who likes fancy wine. But Epicurus was different.

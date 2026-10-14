@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Rationalism vs. Empiricism: The Source of Truth"
+description: "Rationalism vs. Empiricism: The Source of Truth — How do you know things?"
+volume_id: "vol-03-epistemology"
+order: 1
+permalink: "/reading/epistemology/rationalism-vs-empiricism/"
+---
+
 # Rationalism vs. Empiricism: The Source of Truth
 
 How do you know things?

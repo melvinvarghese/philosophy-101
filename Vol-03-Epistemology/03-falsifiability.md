@@ -1,3 +1,12 @@
+---
+layout: article
+title: "Science and Falsifiability"
+description: "Science and Falsifiability — Karl Popper changed how we do science. He said: \"Scientific theories must be falsifiable.\""
+volume_id: "vol-03-epistemology"
+order: 3
+permalink: "/reading/epistemology/falsifiability/"
+---
+
 # Science and Falsifiability
 
 Karl Popper changed how we do science. He said: **"Scientific theories must be falsifiable."**
