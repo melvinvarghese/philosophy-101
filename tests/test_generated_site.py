@@ -226,6 +226,137 @@ def site_url(permalink: str) -> str:
     return f"{SITE_BASEURL}{permalink}"
 
 
+class DocumentMetadataReader(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.title = ""
+        self.description = ""
+        self.in_title = False
+        self.title_parts = []
+
+    def handle_starttag(self, tag, attrs):
+        attributes = dict(attrs)
+        if tag == "title":
+            self.in_title = True
+        elif tag == "meta" and attributes.get("name") == "description":
+            self.description = attributes.get("content", "")
+
+    def handle_data(self, data):
+        if self.in_title:
+            self.title_parts.append(data)
+
+    def handle_endtag(self, tag):
+        if tag == "title" and self.in_title:
+            self.title = "".join(self.title_parts).strip()
+            self.in_title = False
+
+
+class AnchorCollector(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.hrefs = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "a":
+            href = dict(attrs).get("href")
+            if href is not None:
+                self.hrefs.append(href)
+
+
+class IdCollector(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.ids = set()
+
+    def handle_starttag(self, tag, attrs):
+        element_id = dict(attrs).get("id")
+        if element_id:
+            self.ids.add(element_id)
+
+
+def library_html_pages() -> list[Path]:
+    return sorted(path for path in SITE_ROOT.rglob("*.html") if path.is_file())
+
+
+def page_title(path: Path) -> str:
+    parser = DocumentMetadataReader()
+    parser.feed(path.read_text(encoding="utf-8"))
+    return parser.title
+
+
+def page_description(path: Path) -> str:
+    parser = DocumentMetadataReader()
+    parser.feed(path.read_text(encoding="utf-8"))
+    return parser.description
+
+
+def local_links(path: Path) -> list[str]:
+    parser = AnchorCollector()
+    parser.feed(path.read_text(encoding="utf-8"))
+    links = []
+    for href in parser.hrefs:
+        parsed = urlsplit(href)
+        if parsed.scheme or parsed.netloc or parsed.path.startswith("mailto:") or parsed.path.startswith("tel:"):
+            continue
+        if parsed.path or not parsed.fragment:
+            links.append(href)
+    return links
+
+
+def local_fragments(path: Path) -> list[str]:
+    parser = AnchorCollector()
+    parser.feed(path.read_text(encoding="utf-8"))
+    fragments = []
+    for href in parser.hrefs:
+        parsed = urlsplit(href)
+        if parsed.fragment and not parsed.scheme and not parsed.netloc and not parsed.path:
+            fragments.append(parsed.fragment)
+    return fragments
+
+
+def element_ids(path: Path) -> set[str]:
+    parser = IdCollector()
+    parser.feed(path.read_text(encoding="utf-8"))
+    return parser.ids
+
+
+def target_exists_in_site(href: str) -> bool:
+    path = urlsplit(href).path
+    if path == SITE_BASEURL:
+        path = "/"
+    elif path.startswith(f"{SITE_BASEURL}/"):
+        path = path[len(SITE_BASEURL):]
+    elif path.startswith("/"):
+        return False
+    output = (SITE_ROOT / path.lstrip("/")).resolve()
+    if output != SITE_ROOT.resolve() and SITE_ROOT.resolve() not in output.parents:
+        return False
+    if path.endswith("/") or output.is_dir():
+        output /= "index.html"
+    return output.is_file()
+
+
+def css_color(name: str) -> tuple[int, int, int]:
+    css = read_site_file("assets/css/site.css")
+    match = re.search(rf"--{re.escape(name)}\s*:\s*#([0-9a-fA-F]{{6}})", css)
+    if not match:
+        raise AssertionError(f"CSS custom property --{name} is missing or not a six-digit hex color")
+    value = match.group(1)
+    return tuple(int(value[index:index + 2], 16) for index in (0, 2, 4))
+
+
+def contrast_ratio(foreground: tuple[int, int, int], background: tuple[int, int, int]) -> float:
+    def luminance(color):
+        channels = []
+        for component in color:
+            channel = component / 255
+            channels.append(channel / 12.92 if channel <= 0.04045 else ((channel + 0.055) / 1.055) ** 2.4)
+        return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2]
+
+    lighter, darker = sorted((luminance(foreground), luminance(background)), reverse=True)
+    return (lighter + 0.05) / (darker + 0.05)
+
+
 def article_link_href(html: str, class_name: str) -> str | None:
     links = classed_links(html, class_name)
     return links[0]["href"] if links else None
@@ -259,6 +390,11 @@ class TestVolumeNavigation(unittest.TestCase):
             volume_card_links(html),
             [f"/philosophy-101/volumes/{slug}/" for slug in VOLUME_SLUGS],
         )
+
+    def test_homepage_volume_numbers_are_two_digits(self):
+        html = read_site_file("index.html")
+        numbers = re.findall(r'<span class="volume-card__number">([^<]+)</span>', html)
+        self.assertEqual(numbers, [f"Volume {number:02d}" for number in range(1, 11)])
 
     def test_homepage_links_to_existing_questions(self):
         html = read_site_file("index.html")
@@ -334,6 +470,61 @@ class TestArticlePages(unittest.TestCase):
         for slug, source_dir in zip(VOLUME_SLUGS, VOLUME_SOURCE_DIRS):
             html = read_site_file(f"volumes/{slug}/index.html")
             self.assertEqual(volume_article_titles(html), source_article_titles(source_dir))
+
+
+class TestSiteQuality(unittest.TestCase):
+    def test_every_library_page_has_title_and_description(self):
+        pages = library_html_pages()
+        titles = [page_title(page) for page in pages]
+        descriptions = [page_description(page) for page in pages]
+        self.assertTrue(all(titles))
+        self.assertEqual(len(titles), len(set(titles)))
+        self.assertTrue(all(descriptions))
+        self.assertEqual(len(descriptions), len(set(descriptions)))
+        for page in pages:
+            html = page.read_text(encoding="utf-8")
+            self.assertIn('rel="canonical"', html)
+            self.assertIn('property="og:title"', html)
+            self.assertIn('property="og:description"', html)
+            self.assertIn('property="og:url"', html)
+
+    def test_internal_links_resolve_under_baseurl(self):
+        for page in library_html_pages():
+            for href in local_links(page):
+                self.assertTrue(href.startswith(f"{SITE_BASEURL}/"), href)
+                self.assertTrue(target_exists_in_site(href), href)
+
+    def test_every_page_has_one_primary_heading(self):
+        for page in library_html_pages():
+            self.assertEqual(count_html_tags(page.read_text(encoding="utf-8"), "h1"), 1, str(page))
+
+    def test_in_page_fragments_resolve(self):
+        for page in library_html_pages():
+            ids = element_ids(page)
+            for fragment in local_fragments(page):
+                self.assertIn(fragment, ids, f"{page}: #{fragment}")
+
+    def test_shell_has_skip_link_landmarks_and_focus_style(self):
+        html = read_site_file("index.html")
+        css = read_site_file("assets/css/site.css")
+        self.assertIn('class="skip-link"', html)
+        self.assertIn("<main", html)
+        self.assertIn(":focus-visible", css)
+        self.assertIn("prefers-reduced-motion", css)
+        paper = css_color("paper")
+        self.assertGreaterEqual(contrast_ratio(css_color("ink"), paper), 4.5)
+        self.assertGreaterEqual(contrast_ratio(css_color("quiet-ink"), paper), 4.5)
+        self.assertGreaterEqual(contrast_ratio(css_color("terracotta"), paper), 4.5)
+        self.assertGreaterEqual(contrast_ratio(css_color("blue"), paper), 4.5)
+
+    def test_no_tracking_or_remote_font_requests(self):
+        for page in library_html_pages():
+            content = page.read_text(encoding="utf-8")
+            self.assertNotIn("googletagmanager.com", content)
+            self.assertNotIn("google-analytics.com", content)
+            self.assertNotIn("fonts.googleapis.com", content)
+        css = read_site_file("assets/css/site.css")
+        self.assertNotIn("fonts.googleapis.com", css)
 
 
 if __name__ == "__main__":

@@ -44,7 +44,7 @@ layout: default
     <div class="volume-grid">
       {% for volume in site.data.volumes %}
       <a class="volume-card" href="{{ '/volumes/' | append: volume.slug | append: '/' | relative_url }}" aria-label="Volume {{ forloop.index }}: {{ volume.title | escape }}. {{ volume.description | escape }}">
-        <span class="volume-card__number">Volume {{ forloop.index | prepend: '0' }}</span>
+        <span class="volume-card__number">Volume {{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
         <span class="volume-card__title">{{ volume.title | escape }}</span>
         <span class="volume-card__description">{{ volume.description | escape }}</span>
         <span class="volume-card__mark" aria-hidden="true">↗</span>
